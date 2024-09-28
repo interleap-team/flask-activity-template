@@ -235,7 +235,7 @@ Now that we have covered the basics of Flask, routes, and templates, let’s put
 
 ---
 
-### 6. **Challenges You Might Face**
+### 5. **Challenges You Might Face**
 
 #### 1. **Understanding Routes**:
 
@@ -251,7 +251,7 @@ Now that we have covered the basics of Flask, routes, and templates, let’s put
 
 ---
 
-### 7. **Conclusion**
+### 6. **Conclusion**
 
 In this session, we covered the basics of the Flask framework, routes, templates, and how to build a simple web project. By now, you should have a good understanding of how to:
 
@@ -264,7 +264,7 @@ I encourage you to experiment with the code and try building your own projects, 
 
 ---
 
-### 8. **Next Steps**
+### 7. **Next Steps**
 
 - Try adding more features to the To-Do List application, such as the ability to delete tasks or mark them as completed.
 - Explore Flask’s documentation to learn about more advanced features like database integration and user authentication.
