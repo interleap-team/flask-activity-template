@@ -1,2 +1,31 @@
-<!-- TODO Build the home.html as per the instructions in README.md -->
-<!-- TODO Make the simple HTML structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <input type="checkbox" {% if task.is_completed %}checked{% endif %} disabled>
+                <span {% if task.is_completed %}style="text-decoration: line-through;"{% endif %}>{{ task.content }}</span>
+                <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                {% if not task.is_completed %}
+                    <form action="/complete/{{ loop.index0 }}" method="POST" style="display:inline;">
+                        <button type="submit">Complete</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Enter a new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
