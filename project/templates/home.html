@@ -1,2 +1,60 @@
-<!-- TODO Build the home.html as per the instructions in README.md -->
-<!-- TODO Make the simple HTML structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+        button {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>My To-Do List</h1>
+    <ul>
+        {% for item in tasks %}
+            <li>
+                <input type="checkbox" {% if item.is_completed %}checked{% endif %} disabled>
+                <span class="{% if item.is_completed %}completed{% endif %}">{{ item.content }}</span>
+                <form action="/remove/{{ loop.index0 }}" method="POST" style="display:inline;">
+                    <button type="submit">Remove</button>
+                </form>
+                {% if not item.is_completed %}
+                    <form action="/mark_complete/{{ loop.index0 }}" method="POST" style="display:inline;">
+                        <button type="submit">Complete</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/add_task" method="POST">
+        <input type="text" name="task" placeholder="Enter a new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
